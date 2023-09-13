@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- head definitions go here -->
+        <link rel = 'stylesheet' href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="panel">
+            <div id="who_move"></div>
+
+        </div>
+        <center><table>
+            <tr>
+              <th class="letter"></th>
+              <th class="letter">a</th>
+              <th class="letter">b</th>
+              <th class="letter">c</th>
+              <th class="letter">d</th>
+              <th class="letter">e</th>
+              <th class="letter">f</th>
+              <th class="letter">g</th>
+              <th class="letter">h</th>
+            </tr>
+            <tr>
+              <th class="number">8</th>
+              <td class="white" id="8A" onclick="check_have_chakemate('8A')">
+                  <div class="figure" id="9">&#9814</div></td><!--rook-->
+              <td class="black" id="8B">
+                  <div class="figure" id="10">&#9816</div></td><!--knight-->
+              <td class="white" id="8C">
+                  <div class="figure" id="11">&#9815</div></td><!--bishop-->
+              <td class="black" id="8D">
+                  <div class="figure" id="12">&#9813</div></td><!--queen-->
+              <td class="white" id="8E">
+                  <div class="figure" id="13">&#9812</div></td><!--king-->
+              <td class="black" id="8F">
+                  <div class="figure" id="14">&#9815</div></td><!--bishop-->
+              <td class="white" id="8G">
+                  <div class="figure" id="15">&#9816</div></td><!--knight-->
+              <td class="black" id="8H">
+                  <div class="figure" id="16">&#9814</div></td><!--rook-->
+            </tr>
+            <tr>
+              <th class="number">7</th>
+              <td class="black" id="7A" onclick="check_have_chakemate('7A')">
+                  <div class="figure" id="1" >&#9817</div></td>
+              <td class="white" id="7B" onclick="check_have_chakemate('7B')">
+                  <div class="figure" id="2" >&#9817</div></td>
+              <td class="black" id="7C" onclick="check_have_chakemate('7C')">
+                  <div class="figure" id="3">&#9817</div></td>
+              <td class="white" id="7D" onclick="check_have_chakemate('7D')">
+                  <div class="figure" id="4">&#9817</div></td>
+              <td class="black" id="7E" onclick="check_have_chakemate('7E')">
+                  <div class="figure" id="5">&#9817</div></td>
+              <td class="white" id="7F" onclick="check_have_chakemate('7F')">
+                  <div class="figure" id="6">&#9817</div></td>
+              <td class="black" id="7G" onclick="check_have_chakemate('7G')">
+                  <div class="figure" id="7">&#9817</div></td>
+              <td class="white" id="7H" onclick="check_have_chakemate('7H')">
+                  <div class="figure" id="8">&#9817</div></td>
+            </tr>
+            <tr>
+              <th class="number">6</th>
+              <td class="white" id="6A"></td>
+              <td class="black" id="6B"></td>
+              <td class="white" id="6C"></td>
+              <td class="black" id="6D" onclick="check_have_chakemate('6A')"></td>
+              <td class="white" id="6E"></td>
+              <td class="black" id="6F"></td>
+              <td class="white" id="6G"></td>
+              <td class="black" id="6H"></td>
+            </tr>
+            <tr>
+              <th class="number">5</th>
+              <td class="black" id="5A" onclick=""></td>
+              <td class="white" id="5B"></td>
+              <td class="black" id="5C"></td>
+              <td class="white" id="5D"></td>
+              <td class="black" id="5E"></td>
+              <td class="white" id="5F"></td>
+              <td class="black" id="5G"></td>
+              <td class="white" id="5H"></td>
+            </tr>
+            <tr>
+              <th class="number">4</th>
+              <td class="white" id="4A"></td>
+              <td class="black" id="4B"></td>
+              <td class="white" id="4C"></td>
+              <td class="black" id="4D"></td>
+              <td class="white" id="4E"></td>
+              <td class="black" id="4F"></td>
+              <td class="white" id="4G"></td>
+              <td class="black" id="4H"></td>
+            </tr>
+            <tr>
+              <th class="number">3</th>
+              <td class="black" id="3A"></td>
+              <td class="white" id="3B"></td>
+              <td class="black" id="3C"></td>
+              <td class="white" id="3D"></td>
+              <td class="black" id="3E"></td>
+              <td class="white" id="3F"></td>
+              <td class="black" id="3G"></td>
+              <td class="white" id="3H"></td>
+            </tr>
+            <tr>
+              <th class="number">2</th>
+              <td class="white" id="2A">
+                  <div class="figure" id="17">&#9817</div></td>
+              <td class="black" id="2B">
+                  <div class="figure" id="18">&#9817</div></td>
+              <td class="white" id="2C">
+                  <div class="figure" id="19">&#9817</div></td>
+              <td class="black" id="2D">
+                  <div class="figure" id="20">&#9817</div></td>
+              <td class="white" id="2E">
+                  <div class="figure" id="21">&#9817</div></td>
+              <td class="black" id="2F">
+                  <div class="figure" id="22">&#9817</div></td>
+              <td class="white" id="2G">
+                  <div class="figure" id="23">&#9817</div></td>
+              <td class="black" id="2H">
+                  <div class="figure" id="24">&#9817</div></td>
+            </tr>
+            <tr>
+              <th class="number">1</th>
+              <td class="black" id="1A">
+                  <div class="figure" id="25">&#9814</div></td>
+              <td class="white" id="1B">
+                  <div class="figure" id="26">&#9816</div></td>
+              <td class="black" id="1C">
+                  <div class="figure" id="27">&#9815</div></td>
+              <td class="white" id="1D">
+                  <div class="figure" id="28">&#9813</div></td>
+              <td class="black" id="1E">
+                  <div class="figure" id="29">&#9812</div></td>
+              <td class="white" id="1F">
+                  <div class="figure" id="30">&#9815</div></td>
+              <td class="black" id="1G">
+                  <div class="figure" id="31">&#9816</div></td>
+              <td class="white" id="1H">
+                  <div class="figure" id="32">&#9814</div></td>
+            </tr>
+            <tr>
+              <th class="letter"></th>
+              <td class="letter">a</td>
+              <td class="letter">b</td>
+              <td class="letter">c</td>
+              <td class="letter">d</td>
+              <td class="letter">e</td>
+              <td class="letter">f</td>
+              <td class="letter">g</td>
+              <td class="letter">h</td>
+            </tr>
+          </table></center>
+    </body>
+</html>
