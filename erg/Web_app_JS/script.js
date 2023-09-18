@@ -84,9 +84,11 @@ function move_player1_rook(element){
         case "B8":
             var a = letters[index_letter + 1] + (test - 2);
             var b = letters[index_letter - 1] + (test - 2);
-            if (document.getElementById(a).innerHTML != null && document.getElementById(b).innerHTML != null)
+            if (document.getElementById(a).innerHTML != null)
             {
-                document.getElementById(a).style.backgroundColor = "green";
+                document.getElementById(a).style.backgroundColor = "green";            
+            }
+            if (document.getElementById(b).innerHTML != null) {
                 document.getElementById(b).style.backgroundColor = "green";
             }
             break;
@@ -99,6 +101,7 @@ function move_player1_rook(element){
                 document.getElementById(b).style.backgroundColor = "green";
             }
             break;
+        
     }
 
     console.log("This is rook player 1");
