@@ -7,6 +7,8 @@ let Gamestart = false;
 let DB = new Map();
 
 let per = new Array("drgdg", "rdghdrrt", "ergerg");
+const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+
 
 
 
@@ -38,7 +40,7 @@ function move(element){
     if ( idd < 9 && idd > 0){
         move_player1_pawn(element);
     }
-    if (idd == 9 || idd == 10){
+    if (idd >= 9 && idd <= 16){
         move_player1_rook(element);
     }
 
@@ -46,8 +48,8 @@ function move(element){
 
 function move_player1_pawn(element){
 
-    console.log("This is pawn player 1");
-    console.log(element.id);
+    console.log("This is pawn player 1 ");
+    
     if (!Gamestart){
         see_move(element, "pawn_start", 1);
     }
@@ -58,10 +60,14 @@ function move_player1_pawn(element){
 
 
 function see_move(element, type, player){
+    var test = Number(element.id[1]);
+    var test1 = element.id[0];
+    console.log("#" + (test - 1) + test1);
+
     if (type == "pawn_start"){
         try{
-            document.querySelector('#${element.id-1}').style.color = "red";
-            document.querySelector('#${element.id-2}').style.color = "red";
+            document.getElementById(test1 + (test - 1)).style.backgroundColor = "green";
+            document.getElementById(test1 + (test - 2)).style.backgroundColor = "green";
         }
         catch{
             console.log("error")
@@ -71,6 +77,30 @@ function see_move(element, type, player){
 
 
 function move_player1_rook(element){
+    var test = Number(element.id[1]);
+    var test1 = element.id[0];
+    var index_letter = letters.indexOf(test1);
+    switch (element.id){
+        case "B8":
+            var a = letters[index_letter + 1] + (test - 2);
+            var b = letters[index_letter - 1] + (test - 2);
+            if (document.getElementById(a).innerHTML != null && document.getElementById(b).innerHTML != null)
+            {
+                document.getElementById(a).style.backgroundColor = "green";
+                document.getElementById(b).style.backgroundColor = "green";
+            }
+            break;
+        case "G8":
+            var a = letters[index_letter + 1] + (test - 2);
+            var b = letters[index_letter - 1] + (test - 2);
+            if (document.getElementById(a).innerHTML != null && document.getElementById(b).innerHTML != null)
+            {
+                document.getElementById(a).style.backgroundColor = "green";
+                document.getElementById(b).style.backgroundColor = "green";
+            }
+            break;
+    }
+
     console.log("This is rook player 1");
     see_move(element, "rook", 1);
 }
