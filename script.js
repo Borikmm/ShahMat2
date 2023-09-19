@@ -3,9 +3,8 @@ let Gamestart = false;
 
 let event = false;
 let chakemate_now = null;
-
+let root_predict = false;
 let DB = new Map();
-
 let spores = [];
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
@@ -28,9 +27,16 @@ function change_player_move(fieldName) {
 
 
 function check_have_chakemate(name) {
+    if (root_predict) {
+        root_predict = false;
+    }
+    else {
+        root_predict = true;
+    }
+
+    
     var itElement = document.getElementById(name);
     console.log(itElement.style.backgroundColor);
-
     if(itElement.innerHTML != ""){
         move(itElement);
     }
@@ -65,12 +71,21 @@ function see_move(element, type, player){
     var number = Number(element.id[1]);
     var letter = element.id[0];
     console.log("#" + (number - 1) + letter);
-
     if (type == "pawn_start"){
-        try{
-            document.getElementById(letter + (number - 1)).style.backgroundColor = "green";
-            document.getElementById(letter + (number - 2)).style.backgroundColor = "green";
-            chakemate_now = element;
+        try {
+            var i = letter + (number - 1);
+            var j = letter + (number - 2);
+
+            if (root_predict) {
+                document.getElementById(i).style.backgroundColor = "green";
+                document.getElementById(j).style.backgroundColor = "green";
+                chakemate_now = element;
+            }
+            else {
+                
+                document.getElementById(i).style.backgroundColor = document.getElementById(i).className;
+                document.getElementById(j).style.backgroundColor = document.getElementById(j).className;
+            }
         }
         catch{
             console.log("error")
