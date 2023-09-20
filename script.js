@@ -1,4 +1,7 @@
 
+
+
+
 let Gamestart = false;
 
 let event = false;
@@ -9,7 +12,11 @@ let spores = [];
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 
-
+function clean(){
+    for (let i = 0; i < spores.length; i++){
+        spores[i].style.backgroundColor = spores[i].className;
+    }
+}
 
 // for (let a = 0; a < 32;  a++){
 //     DB.set(a, per);
@@ -27,7 +34,9 @@ function change_player_move(fieldName) {
 
 
 function check_have_chakemate(name) {
+    clean();
     if (root_predict) {
+        
         root_predict = false;
     }
     else {
@@ -76,16 +85,19 @@ function see_move(element, type, player){
             var i = letter + (number - 1);
             var j = letter + (number - 2);
 
-            if (root_predict) {
-                document.getElementById(i).style.backgroundColor = "green";
-                document.getElementById(j).style.backgroundColor = "green";
-                chakemate_now = element;
-            }
-            else {
-                
-                document.getElementById(i).style.backgroundColor = document.getElementById(i).className;
-                document.getElementById(j).style.backgroundColor = document.getElementById(j).className;
-            }
+            el1 = document.getElementById(i)
+            el1.style.backgroundColor = "green";
+            el2 = document.getElementById(j)
+            el2.style.backgroundColor = "green";
+
+            spores.push(el1, el2)
+
+            chakemate_now = element;
+            
+
+            // document.getElementById(i).style.backgroundColor = document.getElementById(i).className;
+            // document.getElementById(j).style.backgroundColor = document.getElementById(j).className;
+
         }
         catch{
             console.log("error")
