@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!--
+1. Who move
+2. Update design chahmates
+3. functional chachmate
+--> 
+
+
+
+
 <html>
     <head>
         <!-- head definitions go here -->
@@ -23,7 +32,7 @@
 
 
             <table>
-                <tr>
+                <tr id="9l">
                 <th class="letter"></th>
                 <th class="letter">a</th>
                 <th class="letter">b</th>
@@ -34,26 +43,26 @@
                 <th class="letter">g</th>
                 <th class="letter">h</th>
                 </tr>
-                <tr>
+                <tr  id="8l">
                 <th class="number">8</th>
                 <td class="white" id="A8" onclick="check_have_chakemate('A8')">
                     <div class="figure" id="9" >&#9814</div></td><!--rook-->
                 <td class="gray" id="B8" onclick="check_have_chakemate('B8')">
                     <div class="figure" id="10">&#9816</div></td><!--knight-->
-                <td class="white" id="C8">
+                <td class="white" id="C8" onclick="check_have_chakemate('C8')">
                     <div class="figure" id="11">&#9815</div></td><!--bishop-->
-                <td class="gray" id="D8">
+                <td class="gray" id="D8" onclick="check_have_chakemate('D8')">
                     <div class="figure" id="12">&#9813</div></td><!--queen-->
-                <td class="white" id="E8">
+                <td class="white" id="E8" onclick="check_have_chakemate('E8')">
                     <div class="figure" id="13">&#9812</div></td><!--king-->
-                <td class="gray" id="F8">
+                <td class="gray" id="F8" onclick="check_have_chakemate('F8')">
                     <div class="figure" id="14">&#9815</div></td><!--bishop-->
                 <td class="white" id="G8" onclick="check_have_chakemate('G8')">
                     <div class="figure" id="15">&#9816</div></td><!--knight-->
-                <td class="gray" id="H8">
+                <td class="gray" id="H8" onclick="check_have_chakemate('H8')">
                     <div class="figure" id="16">&#9814</div></td><!--rook-->
                 </tr>
-                <tr>
+                <tr id="7l">
                 <th class="number">7</th>
                 <td class="gray" id="A7" onclick="check_have_chakemate('A7')">
                     <div class="figure" id="1" >&#9817</div></td>
@@ -72,7 +81,7 @@
                 <td class="white" id="H7" onclick="check_have_chakemate('H7')">
                     <div class="figure" id="8">&#9817</div></td>
                 </tr>
-                <tr>
+                <tr  id="6l">
                 <th class="number">6</th>
                 <td class="white" id="A6" onclick="check_have_chakemate('A6')"></td>
                 <td class="gray" id="B6" onclick="check_have_chakemate('B6')"></td>
@@ -83,7 +92,7 @@
                 <td class="white" id="G6" onclick="check_have_chakemate('G6')"></td>
                 <td class="gray" id="H6" onclick="check_have_chakemate('H6')"></td>
                 </tr>
-                <tr>
+                <tr  id="5l">
                 <th class="number">5</th>
                 <td class="gray" id="A5" onclick="check_have_chakemate('A5')"></td>
                 <td class="white" id="B5" onclick="check_have_chakemate('B5')"></td>
@@ -94,18 +103,18 @@
                 <td class="gray" id="G5" onclick="check_have_chakemate('G5')"></td>
                 <td class="white" id="H5" onclick="check_have_chakemate('H5')"></td>
                 </tr>
-                <tr>
+                <tr id="4l">
                 <th class="number">4</th>
-                <td class="white" id="A4"></td>
-                <td class="gray" id="B4"></td>
-                <td class="white" id="C4"></td>
-                <td class="gray" id="D4"></td>
-                <td class="white" id="E4"></td>
-                <td class="gray" id="F4"></td>
-                <td class="white" id="G4"></td>
-                <td class="gray" id="H4"></td>
+                <td class="white" id="A4" onclick="check_have_chakemate('A4')"></td>
+                <td class="gray" id="B4" onclick="check_have_chakemate('B4')"></td>
+                <td class="white" id="C4" onclick="check_have_chakemate('C4')"></td>
+                <td class="gray" id="D4" onclick="check_have_chakemate('D4')"></td>
+                <td class="white" id="E4" onclick="check_have_chakemate('E4')"></td>
+                <td class="gray" id="F4" onclick="check_have_chakemate('F4')"></td>
+                <td class="white" id="G4" onclick="check_have_chakemate('G4')"></td>
+                <td class="gray" id="H4" onclick="check_have_chakemate('H4')"></td>
                 </tr>
-                <tr>
+                <tr id="3l">
                 <th class="number">3</th>
                 <td class="gray" id="A3" onclick="check_have_chakemate('A3')"></td>
                 <td class="white" id="B3" onclick="check_have_chakemate('B3')"></td>
@@ -116,7 +125,7 @@
                 <td class="gray" id="G3" onclick="check_have_chakemate('G3')"></td>
                 <td class="white" id="H3" onclick="check_have_chakemate('H3')"></td>
                 </tr>
-                <tr>
+                <tr id="2l">
                 <th class="number">2</th>
                 <td class="white" id="A2" onclick="check_have_chakemate('A2')">
                     <div class="figure" id="17">&#9817</div></td>
@@ -135,26 +144,26 @@
                 <td class="gray" id="H2" onclick="check_have_chakemate('H2')">
                     <div class="figure" id="24">&#9817</div></td>
                 </tr>
-                <tr>
+                <tr id="1l">
                 <th class="number">1</th>
-                <td class="gray" id="1A">
+                <td class="gray" id="A1" onclick="check_have_chakemate('A1')">
                     <div class="figure" id="25">&#9814</div></td>
-                <td class="white" id="1B">
+                <td class="white" id="B1" onclick="check_have_chakemate('B1')">
                     <div class="figure" id="26">&#9816</div></td>
-                <td class="gray" id="1C">
+                <td class="gray" id="C1" onclick="check_have_chakemate('C1')">
                     <div class="figure" id="27">&#9815</div></td>
-                <td class="white" id="1D">
+                <td class="white" id="D1" onclick="check_have_chakemate('D1')">
                     <div class="figure" id="28">&#9813</div></td>
-                <td class="gray" id="1E">
+                <td class="gray" id="E1" onclick="check_have_chakemate('E1')">
                     <div class="figure" id="29">&#9812</div></td>
-                <td class="white" id="1F">
+                <td class="white" id="F1" onclick="check_have_chakemate('F1')">
                     <div class="figure" id="30">&#9815</div></td>
-                <td class="gray" id="1G">
+                <td class="gray" id="G1" onclick="check_have_chakemate('G1')">
                     <div class="figure" id="31">&#9816</div></td>
-                <td class="white" id="1H">
+                <td class="white" id="H1" onclick="check_have_chakemate('H1')">
                     <div class="figure" id="32">&#9814</div></td>
                 </tr>
-                <tr>
+                <tr id="0l">
                 <th class="letter"></th>
                 <td class="letter">a</td>
                 <td class="letter">b</td>
@@ -170,6 +179,7 @@
 
             <div class="panel history">
                 <div id="Name">History</div>
+                <div id="Text1">regregr</div>
 
 
             </div>
