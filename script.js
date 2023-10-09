@@ -78,6 +78,9 @@ class service
     static move_chakemate(chakemate, where)
     {
         console.log("move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id);
+
+        document.getElementById("Text1").innerHTML += ("move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + "<br>");
+
         this.what_chackmate(chakemate)
         if (chakemate.childNodes[1].id[chakemate.childNodes[1].id.length-1] != "H" && this.what_chackmate(chakemate)[0] == "pawn"){
             chakemate.childNodes[1].id += "H"

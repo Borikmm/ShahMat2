@@ -55,19 +55,25 @@ table {
     }
 
 
-.history{
+.history {
     background-color: rgba(114, 135, 148, 0.657);
     border: 1px solid black;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: relative;
+    max-width: 100%;
 }
 
-#Name{
+#Text1{
+}
+
+.Name{
     display: block;
-    justify-content: center;
     border-bottom: 1px solid black;
     font-size: 30px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     text-align: center;
 }
 
