@@ -18,35 +18,53 @@ class service
     static what_chackmate(element)
     {
         try{
+
             if(element.childNodes[1].id[element.childNodes[1].id.length-1] != "H"){
                 var idd = element.childNodes[1].id;
             }
             else{
                 var idd = element.childNodes[1].id.replace("H", "");
             }
+
             if (idd < 9 && idd > 0) {
-                return ["pawn", 1]
+                return ["pawn", 1];
             }
-            if (idd >= 17 && idd <= 24) {
-                return ["pawn", 2]
+            else if (idd >= 17 && idd <= 24) {
+                return ["pawn", 2];
             }
-            if ((idd == 15 || idd == 10)) {
-                return ["knight", 1]
+            else if ((idd == 15 || idd == 10)) {
+                return ["knight", 1];
             }
-            if ((idd == 26 || idd == 31)) {
-                return ["knight", 2]
+            else if ((idd == 26 || idd == 31)) {
+                return ["knight", 2];
             }
-            if ((idd == 14 || idd == 11)) {
-                return ["bishop", 1]
+            else if ((idd == 14 || idd == 11)) {
+                return ["bishop", 1];
             }
-            if ((idd == 27 || idd == 30)) {
-                return ["bishop", 2]
+            else if ((idd == 27 || idd == 30)) {
+                return ["bishop", 2];
             }
-            if (idd == 9 || idd == 16){
-                return ["rook", 1]
+            else if (idd == 9 || idd == 16){
+                return ["rook", 1];
             }
-            if (idd == 25 || idd == 32){
-                return ["rook", 2]
+            else if (idd == 25 || idd == 32){
+                return ["rook", 2];
+            }
+            else if (idd == 12)
+            {
+                return ["queen", 1];
+            }
+            else if (idd == 28)
+            {
+                return ["queen", 2];
+            }
+            else if (idd == 13)
+            {
+                return ["king", 1];
+            }
+            else if (idd == 29)
+            {
+                return ["king", 2];
             }
             
         }
@@ -467,7 +485,6 @@ class pawnn
                 console.log("error");
             }
         }
-    
     
         try{
             if (spore_left.innerHTML != "" && player != service.what_chackmate(spore_left)[1])
