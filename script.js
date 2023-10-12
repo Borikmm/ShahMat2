@@ -7,7 +7,8 @@ let spores = [];
 
 window.MAIN_INFO =
 {
-    COLOR_PAINT: "rgba(10, 100, 110, 0.5)"
+    COLOR_PAINT: "rgba(10, 100, 110, 0.5)",
+    NUMBER_MOVE: 0,
 };
 
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
@@ -78,8 +79,8 @@ class service
     static move_chakemate(chakemate, where)
     {
         console.log("move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id);
-
-        document.getElementById("Text1").innerHTML += ("move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + "<br>");
+        MAIN_INFO.NUMBER_MOVE += 1;
+        document.getElementById("Text1").innerHTML += (MAIN_INFO.NUMBER_MOVE+". Move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + "<br>");
 
         this.what_chackmate(chakemate)
         if (chakemate.childNodes[1].id[chakemate.childNodes[1].id.length-1] != "H" && this.what_chackmate(chakemate)[0] == "pawn"){
@@ -105,9 +106,11 @@ class service
         this.clean_spores();
         if (turn_player) {
             turn_player = false;
+            document.getElementById("who_move").innerHTML = "Ходит игрок 2";
         }
         else {
             turn_player = true;
+            document.getElementById("who_move").innerHTML = "Ходит игрок 1";
         }
     }
 
@@ -149,8 +152,52 @@ class service
         if (chach[0] == "rook" && turn_player == false && chach[1] == 2){
             rook.move_player_rook(element, 2)
         }
+        if (chach[0] == "queen" && turn_player == true && chach[1] == 1){
+            console.log("or");
+            queen.move_player_queen(element, 1)
+        }
+        if (chach[0] == "queen" && turn_player == false && chach[1] == 2){
+            queen.move_player_queen(element, 2)
+            console.log("or2");
+        }
+        if (chach[0] == "king" && turn_player == true && chach[1] == 1){
+            king.move_player_king(element, 1)
+        }
+        if (chach[0] == "king" && turn_player == false && chach[1] == 2){
+            king.move_player_king(element, 2)
+        }
     }
 }
+
+class king{
+    static painter(element, player){
+        try {
+            if (service.what_chackmate(document.getElementById(element))[1] != player || document.getElementById(element).innerHTML == '') {
+                
+                document.getElementById(element).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
+                spores.push(document.getElementById(element));
+            }
+        }
+        catch{
+        }
+    }
+    static move_player_king(element, player){
+        var number = Number(element.id[1]);
+        var letter = element.id[0];
+        var index_letter = letters.indexOf(letter);
+        this.painter(letter + (number + 1), player);
+        this.painter(letter + (number - 1), player);
+        this.painter(letters[index_letter + 1] + number, player);
+        this.painter(letters[index_letter - 1] + number, player);
+        this.painter(letters[index_letter + 1] + (number + 1), player);
+        this.painter(letters[index_letter + 1] + (number - 1), player);
+        this.painter(letters[index_letter - 1] + (number + 1), player);
+        this.painter(letters[index_letter - 1] + (number - 1), player);
+        chakemate_now = element;
+    }
+}
+
+
 class knight
 {
     static predicthode(element, player) {
@@ -517,9 +564,15 @@ class pawnn
     }
 }
 
+class queen
+{
+    static move_player_queen(element, player)
+    {
+        rook.move_player_rook(element, player);
+        bishop.move_player_bishop(element, player);
+    }
 
-
-
+}
 
 function check_have_chakemate(name) {
     var itElement = document.getElementById(name);

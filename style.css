@@ -10,6 +10,7 @@ body{
 
 .panel{
     flex-grow: 1;
+    width: 33%;
 }
 
 .panel_up{
@@ -66,7 +67,21 @@ table {
     max-width: 100%;
 }
 
-#Text1{
+#who_move{
+    color: yellow;
+    text-align: center;
+    font-size: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+
+#Text1
+{
+    overflow: scroll; /* Добавляем полосы прокрутки */
+    width: auto; /* Ширина блока */
+    height: 625px; /* Высота блока */
+    border: solid 1px black; /* Параметры рамки */
 }
 
 .Name{
@@ -78,7 +93,10 @@ table {
 }
 
 
-
+#change_location
+{
+    margin: 0;
+}
 
 
 .interactive{
@@ -90,6 +108,4 @@ table {
 button{
     width: 100px;
     height: 20px;
-    margin-left: 50%;
-    margin-top: 30px;
 }
