@@ -1,0 +1,114 @@
+body{
+    background-image: url("../../Design/city.jpeg");
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: 100%;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+
+}
+
+.panel{
+    flex-grow: 1;
+    width: 33%;
+}
+
+.panel_up{
+    margin-top: 0px;
+    padding-top: 0px;
+    width: auto;
+    height: 80px;
+    background-color: rgba(114, 135, 148, 0.657);
+}
+
+table {
+    border-collapse: collapse;
+    width: max-content;
+}  
+  
+    td {
+        width: 75px;
+        height: 75px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid black;
+    }
+    .figure{
+        font-size: 50px;
+    }
+
+    .number, .letter{
+        width: 10px;
+        height: 10px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid black;
+        background-color: rgb(161, 112, 112);
+    }
+
+
+    .white {
+        background-color: white;
+    }
+
+    .gray {
+        background-color: gray;
+    }
+
+
+.history {
+    background-color: rgba(114, 135, 148, 0.657);
+    border: 1px solid black;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: relative;
+    max-width: 100%;
+}
+
+#who_move{
+    color: rgb(22, 112, 98);
+    text-align: center;
+    font-size: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+
+#Text1
+{
+    overflow: scroll; /* Добавляем полосы прокрутки */
+    width: auto; /* Ширина блока */
+    height: 625px; /* Высота блока */
+    border: solid 1px black; /* Параметры рамки */
+}
+
+.Name{
+    display: block;
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+
+#change_location
+{
+    margin-top: 10px;
+}
+
+
+.interactive{
+    background-color: rgba(114, 135, 148, 0.657);
+    border: 1px solid black;
+}
+
+
+button{
+    width: 100px;
+    height: 20px;
+}
