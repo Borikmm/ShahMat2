@@ -8,8 +8,21 @@ body
     padding: 0;
 }
 
+.acount
+{
+    position: absolute;
+    left: 90%;
+}
+
+.logo
+{
+    width: 40px;
+    height: 40px;
+}
+
 #logo
 {
+    border: 5px solid black;
     border-radius: 30%;
     text-align: center;
     padding-top: 30px;
@@ -31,11 +44,20 @@ body
     border: 1px solid black;
 }
 
-
 .point
 {
-    display: block;
+    display: flex;
     position: absolute;
+}
+
+.img_loc
+{
+    opacity: 1; 
+    width: 200px; 
+    height: 120px; 
+    position: absolute; 
+    z-index: -1; 
+    border-radius: 100%;
 }
 
 #n1
@@ -43,7 +65,6 @@ body
     font-size: 100px;
     bottom: 15%;
     left: 25%;
-    color: black;
 }
 
 #n2
