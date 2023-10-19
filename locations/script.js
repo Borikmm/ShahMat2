@@ -7,7 +7,7 @@ let spores = [];
 
 window.MAIN_INFO =
 {
-    COLOR_PAINT: "rgba(10, 100, 110, 0.5)",
+    COLOR_PAINT: "rgba(10, 100, 110, 0.1)",
     NUMBER_MOVE: 0,
 };
 
@@ -575,9 +575,25 @@ class queen
 
 }
 
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
 function check_have_chakemate(name) {
     var itElement = document.getElementById(name);
-
+    var rgb_ = hexToRgb(document.getElementById("color_").value);
+    MAIN_INFO.COLOR_PAINT = `rgba(${rgb_.r}, ${rgb_.g}, ${rgb_.b}, ${document.getElementById("opacity_").value})`;
+    console.log(MAIN_INFO.COLOR_PAINT);
+    console.log(itElement.style.backgroundColor);
+    if (document.getElementById("opacity_").value == "1")
+    {
+        MAIN_INFO.COLOR_PAINT = `rgba(${rgb_.r}, ${rgb_.g}, ${rgb_.b}, 0.99)`;
+    }
     if (itElement.style.backgroundColor == MAIN_INFO.COLOR_PAINT)
     {
         console.log("12345")
