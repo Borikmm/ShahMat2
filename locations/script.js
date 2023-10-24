@@ -4,17 +4,57 @@ let event = false;
 let chakemate_now = null;
 let DB = new Map();
 let spores = [];
-
+let check_king = false;
+let game_end = false;
+let who_win = ''
 window.MAIN_INFO =
 {
-    COLOR_PAINT: "rgba(10, 100, 110, 0.1)",
+    COLOR_PAINT: "rgba(10, 100, 110, 0.5)",
+    COLOR_CHECK: "red",
     NUMBER_MOVE: 0,
 };
 
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 class service
-{
+{   
+    static check() {
+        if (document.getElementById(29) == null) {
+            game_end = true;
+            who_win = "Win Player 1"
+        }
+        if (document.getElementById(13) == null) {
+            game_end = true;
+            who_win = "Win Player 2"
+        }
+        if (game_end == false) {
+            if (turn_player) {
+                turn_player = false;
+                document.getElementById("who_move").innerHTML = "Ходит игрок 2";
+            }
+            else {
+                turn_player = true;
+                document.getElementById("who_move").innerHTML = "Ходит игрок 1";
+            }
+        }
+        else {
+            document.getElementById("who_move").innerHTML = who_win;
+        }
+    }
+    static painter(element){
+        var field = document.getElementById(element)
+        
+        if (service.what_chackmate(field)[0] == "king") {
+            field.style.backgroundColor = MAIN_INFO.COLOR_CHECK;
+            spores.push(field);
+        }
+        else {
+            field.style.backgroundColor = MAIN_INFO.COLOR_PAINT;
+            spores.push(field);
+        }
+      
+    
+    }
 
     static what_chackmate(element)
     {
@@ -80,8 +120,7 @@ class service
     {
         console.log("move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id);
         MAIN_INFO.NUMBER_MOVE += 1;
-        var who = turn_player ? "1" : "2";
-        document.getElementById("Text1").innerHTML += (MAIN_INFO.NUMBER_MOVE+". Move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + " (Player " + who + ")" + "<br>");
+        document.getElementById("Text1").innerHTML += (MAIN_INFO.NUMBER_MOVE+". Move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + "<br>");
 
         this.what_chackmate(chakemate)
         if (chakemate.childNodes[1].id[chakemate.childNodes[1].id.length-1] != "H" && this.what_chackmate(chakemate)[0] == "pawn"){
@@ -105,14 +144,9 @@ class service
         where.appendChild(createEl(10000, "", "span", "rtbr"));
         where.appendChild(el);
         this.clean_spores();
-        if (turn_player) {
-            turn_player = false;
-            document.getElementById("who_move").innerHTML = "Ходит игрок 2";
-        }
-        else {
-            turn_player = true;
-            document.getElementById("who_move").innerHTML = "Ходит игрок 1";
-        }
+        this.check();
+        
+            
     }
 
 
@@ -159,7 +193,6 @@ class service
         }
         if (chach[0] == "queen" && turn_player == false && chach[1] == 2){
             queen.move_player_queen(element, 2)
-            console.log("or2");
         }
         if (chach[0] == "king" && turn_player == true && chach[1] == 1){
             king.move_player_king(element, 1)
@@ -171,12 +204,11 @@ class service
 }
 
 class king{
-    static painter(element, player){
+    static predict_move(element, player){
         try {
             if (service.what_chackmate(document.getElementById(element))[1] != player || document.getElementById(element).innerHTML == '') {
                 
-                document.getElementById(element).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                spores.push(document.getElementById(element));
+                service.painter(element);
             }
         }
         catch{
@@ -186,14 +218,14 @@ class king{
         var number = Number(element.id[1]);
         var letter = element.id[0];
         var index_letter = letters.indexOf(letter);
-        this.painter(letter + (number + 1), player);
-        this.painter(letter + (number - 1), player);
-        this.painter(letters[index_letter + 1] + number, player);
-        this.painter(letters[index_letter - 1] + number, player);
-        this.painter(letters[index_letter + 1] + (number + 1), player);
-        this.painter(letters[index_letter + 1] + (number - 1), player);
-        this.painter(letters[index_letter - 1] + (number + 1), player);
-        this.painter(letters[index_letter - 1] + (number - 1), player);
+        this.predict_move(letter + (number + 1), player);
+        this.predict_move(letter + (number - 1), player);
+        this.predict_move(letters[index_letter + 1] + number, player);
+        this.predict_move(letters[index_letter - 1] + number, player);
+        this.predict_move(letters[index_letter + 1] + (number + 1), player);
+        this.predict_move(letters[index_letter + 1] + (number - 1), player);
+        this.predict_move(letters[index_letter - 1] + (number + 1), player);
+        this.predict_move(letters[index_letter - 1] + (number - 1), player);
         chakemate_now = element;
     }
 }
@@ -205,40 +237,30 @@ class knight
         try {
             if (service.what_chackmate(document.getElementById(element))[1] != player || document.getElementById(element).innerHTML == '') {
                 
-                document.getElementById(element).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                spores.push(document.getElementById(element));
+                service.painter(element);
             }
         }
         catch{
         }
     }
     static predict_hode_prepare(index_letter, test, player){
-            var a = letters[index_letter + 1] + (test + 2);
-            this.predicthode(a, player);
+            this.predicthode(letters[index_letter + 1] + (test + 2), player);
 
-            var b = letters[index_letter - 1] + (test + 2);
-            this.predicthode(b, player);
+            this.predicthode(letters[index_letter - 1] + (test + 2), player);
 
-            var c = letters[index_letter - 1] + (test - 2);
-            this.predicthode(c, player);
+            this.predicthode(letters[index_letter - 1] + (test - 2), player);
                
-            var d = letters[index_letter + 1] + (test - 2);
-            this.predicthode(d, player);
+            this.predicthode(letters[index_letter + 1] + (test - 2), player);
 
-            var e = letters[index_letter - 2] + (test + 1);
-            this.predicthode(e, player);
+            this.predicthode(letters[index_letter - 2] + (test + 1), player);
 
-            var f = letters[index_letter - 2] + (test - 1);
-            this.predicthode(f, player);
+            this.predicthode(letters[index_letter - 2] + (test - 1), player);
 
-            var e = letters[index_letter - 2] + (test + 1);
-            this.predicthode(e, player);
+            this.predicthode(letters[index_letter - 2] + (test + 1), player);
 
-            var g = letters[index_letter + 2] + (test + 1);
-            this.predicthode(g, player);
+            this.predicthode(letters[index_letter + 2] + (test + 1), player);
 
-            var h = letters[index_letter + 2] + (test - 1);
-            this.predicthode(h, player);
+            this.predicthode(letters[index_letter + 2] + (test - 1), player);
     }
 
     static move_player_knight(element, player) {
@@ -289,15 +311,13 @@ class bishop
                     console.log(letter + number);
                     if (document.getElementById(letter + number).innerHTML == "")
                     {
-                        document.getElementById(letter + number).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                        spores.push(document.getElementById(letter + number));
+                        service.painter(letter + number);
                     }
                     else
                     {
                         if (service.what_chackmate(document.getElementById(letter + number))[1] != player)
                         {
-                            document.getElementById(letter + number).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                            spores.push(document.getElementById(letter + number));
+                            service.painter(letter + number);
                             break;
                         }
                         else
@@ -329,10 +349,10 @@ class bishop
 }
 
 class rook{
-    static painter(element){
-        document.getElementById(element).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-        spores.push(document.getElementById(element));
-    }
+    
+   
+        
+    
     static predict_hode_prepare(element, direct, player){
         var test = Number(element.id[1]);
         var test1 = element.id[0];
@@ -345,13 +365,13 @@ class rook{
                     {
 
                         if (document.getElementById(a).innerHTML == "") {
-                            this.painter(a);
+                            service.painter(a);
                             test--;
                             a = test1 + test;
                         }
                         else{
                             if(service.what_chackmate(document.getElementById(a))[1] != player){
-                                this.painter(a);
+                                service.painter(a);
                                 break;
                             }
                             break;
@@ -368,15 +388,16 @@ class rook{
                     {
         
                         if (document.getElementById(b).innerHTML == "") {
-                            this.painter(b);
+                            service.painter(b);
                             test++;
                             b = test1 + test;
                         }
                         else{
                             if(service.what_chackmate(document.getElementById(b))[1] != player){
-                                this.painter(b);
+                                service.painter(b);
                                 break;
                             }
+
                             break;
                         }                                           
                     }
@@ -392,13 +413,13 @@ class rook{
                     {
         
                         if (document.getElementById(b).innerHTML == "") {
-                            this.painter(b);
+                            service.painter(b);
                             index_letter++;
                             b = letters[index_letter] + test;
                         }
                         else{
                             if(service.what_chackmate(document.getElementById(b))[1] != player){
-                                this.painter(b);
+                                service.painter(b);
                                 break;
                             }
                             break;
@@ -416,13 +437,13 @@ class rook{
                     {
         
                         if (document.getElementById(b).innerHTML == "") {
-                            this.painter(b);
+                            service.painter(b);
                             index_letter--;
                             b = letters[index_letter] + test;
                         }
                         else{
                             if(service.what_chackmate(document.getElementById(b))[1] != player){
-                                this.painter(b);
+                                service.painter(b);
                                 break;
                             }
                             break;
@@ -472,7 +493,6 @@ class pawnn
         var number = Number(element.id[1]);
         var letter = element.id[0];
         var spore_left, spore_right;
-        console.log("hipeople");
         if (element.childNodes[1].id[element.childNodes[1].id.length-1] != "H")
         {
             var type = "pawn_start";
@@ -487,11 +507,11 @@ class pawnn
             console.log(`${letters[letters.indexOf(letter) - 1]}${number-1}`);
             console.log(`${letters[letters.indexOf(letter) + 1]}${number-1}`);
             try{
-                spore_left = document.getElementById(`${letters[letters.indexOf(letter) - 1]}${number-1}`);
+                spore_left = `${letters[letters.indexOf(letter) - 1]}${number-1}`;
             }
             catch{console.log("lol")}
             try{
-                spore_right = document.getElementById(`${letters[letters.indexOf(letter) + 1]}${number-1}`);
+                spore_right = `${letters[letters.indexOf(letter) + 1]}${number-1}`;
             }
             catch{}
             
@@ -501,11 +521,11 @@ class pawnn
             console.log(`${letters[letters.indexOf(letter) - 1]}${number+1}`);
             console.log(`${letters[letters.indexOf(letter) + 1]}${number+1}`);
             try{
-                spore_left = document.getElementById(`${letters[letters.indexOf(letter) - 1]}${number+1}`);
+                spore_left = `${letters[letters.indexOf(letter) - 1]}${number+1}`;
             }
             catch{}
             try{
-                spore_right = document.getElementById(`${letters[letters.indexOf(letter) + 1]}${number+1}`);
+                spore_right = `${letters[letters.indexOf(letter) + 1]}${number+1}`;
             }
             catch{}
             
@@ -526,8 +546,7 @@ class pawnn
 
                 if (document.getElementById(j).innerHTML == "" && document.getElementById(i).innerHTML == "")
                 {
-                    document.getElementById(j).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                    spores.push(document.getElementById(j));
+                    service.painter(j)
                 }
 
     
@@ -538,26 +557,23 @@ class pawnn
         }
     
         try{
-            if (spore_left.innerHTML != "" && player != service.what_chackmate(spore_left)[1])
+            if (document.getElementById(spore_left).innerHTML != "" && player != service.what_chackmate(document.getElementById(spore_left))[1])
             {
-                spore_left.style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                spores.push(spore_left);
+                service.painter(spore_left)
             }
         }
         catch{}
         try{
-            if (spore_right.innerHTML != "" && player != service.what_chackmate(spore_right)[1])
+            if (document.getElementById(spore_right).innerHTML != "" && player != service.what_chackmate(document.getElementById(spore_right)[1]))
             {
-                spore_right.style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-                spores.push(spore_right);
+                service.painter(spore_right)
             }
         }
         catch{}
 
         if (document.getElementById(i).innerHTML == "")
         {
-            document.getElementById(i).style.backgroundColor = MAIN_INFO.COLOR_PAINT;
-            spores.push(document.getElementById(i));
+            service.painter(i)
         }
 
         chakemate_now = element;
@@ -578,11 +594,11 @@ class queen
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
     } : null;
-  }
+}
 
 function check_have_chakemate(name) {
     var itElement = document.getElementById(name);
@@ -590,22 +606,22 @@ function check_have_chakemate(name) {
     MAIN_INFO.COLOR_PAINT = `rgba(${rgb_.r}, ${rgb_.g}, ${rgb_.b}, ${document.getElementById("opacity_").value})`;
     console.log(MAIN_INFO.COLOR_PAINT);
     console.log(itElement.style.backgroundColor);
-    if (document.getElementById("opacity_").value == "1")
-    {
+    if (document.getElementById("opacity_").value == "1") {
         MAIN_INFO.COLOR_PAINT = `rgba(${rgb_.r}, ${rgb_.g}, ${rgb_.b}, 0.99)`;
     }
-    if (itElement.style.backgroundColor == MAIN_INFO.COLOR_PAINT)
-    {
-        console.log("12345")
-        service.move_chakemate(chakemate_now, itElement);
-    }
+    if (game_end == false) {
+        if (itElement.style.backgroundColor == MAIN_INFO.COLOR_PAINT || itElement.style.backgroundColor == MAIN_INFO.COLOR_CHECK) {
+            console.log("12345")
+            service.move_chakemate(chakemate_now, itElement);
+        }
 
-    else{
-        var itElement = document.getElementById(name);
-        service.clean_spores();
-        if(itElement.innerHTML != ""){
-            service.move(itElement);
+        else {
+            var itElement = document.getElementById(name);
+            service.clean_spores();
+            if (itElement.innerHTML != "") {
+                service.move(itElement);
+            }
         }
     }
+        
 }
-
