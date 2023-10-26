@@ -1,8 +1,7 @@
 let Gamestart = true;
-let turn_player = true;
+let turn_player = false;
 let event = false;
 let chakemate_now = null;
-let DB = new Map();
 let spores = [];
 let check_king = false;
 let game_end = false;
@@ -22,10 +21,12 @@ class service
         if (document.getElementById(29) == null) {
             game_end = true;
             who_win = "Win Player 1"
+            
         }
         if (document.getElementById(13) == null) {
             game_end = true;
             who_win = "Win Player 2"
+
         }
         if (game_end == false) {
             if (turn_player) {
@@ -39,6 +40,7 @@ class service
         }
         else {
             document.getElementById("who_move").innerHTML = who_win;
+            document.getElementById("Text1").innerHTML += `${who_win}!!!!!!`
         }
     }
     static painter(element){
@@ -118,9 +120,17 @@ class service
 
     static move_chakemate(chakemate, where)
     {
-        console.log("move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id);
+        var IMG_1 = chakemate.childNodes[1].childNodes[0];
+        try
+        {
+            IMG_1.style.width = "20px";
+            IMG_1.style.height = "30px";
+        }
+        catch {}
+
+        var who = turn_player ? "Player 1" : "Player 2";
         MAIN_INFO.NUMBER_MOVE += 1;
-        document.getElementById("Text1").innerHTML += (MAIN_INFO.NUMBER_MOVE+". Move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + "<br>");
+        document.getElementById("Text1").innerHTML += (MAIN_INFO.NUMBER_MOVE+". Move "+chakemate.childNodes[1].innerHTML+" from " + chakemate.id +" to " + where.id + " - (" + who + ")" +"<br>");
 
         this.what_chackmate(chakemate)
         if (chakemate.childNodes[1].id[chakemate.childNodes[1].id.length-1] != "H" && this.what_chackmate(chakemate)[0] == "pawn"){
@@ -128,16 +138,23 @@ class service
         };
 
 
-        const createEl = (id, text, tag = 'div', _class = 'figure') => {
-            const el = document.createElement("div")
-            el.id = id
-            el.className = _class
-            el.textContent = text
-            return el
+        const createEl = (id, tag = 'div', _class = 'figure') => {
+            const el = document.createElement("div");
+            el.id = id;
+            el.className = _class;
+            return el;
         }
 
-        var el = createEl(chakemate.childNodes[1].id, chakemate.childNodes[1].innerHTML, "div", "figure");
-        //console.log(el)
+        const createIMG = (src, _class = 'figure') => {
+            const el = document.createElement("img");
+            el.className = _class;
+            el.src = src;
+            return el;
+        }
+
+        var img_ = createIMG(chakemate.childNodes[1].childNodes[0].src);
+        var el = createEl(chakemate.childNodes[1].id, "div", "spore");
+        el.appendChild(img_);
 
         chakemate.innerHTML = "";
         where.innerHTML = "";
