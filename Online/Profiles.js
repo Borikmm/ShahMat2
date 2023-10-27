@@ -19,13 +19,23 @@ class Data_Base
 
     set_user(name, data)
     {
+        console.log(name);
+        console.log(data);
+
+        if(name == "")
+        {
+            return "Enter true value!";
+        }
+
         if (!this.users.has(name))
         {
             this.users.set(name, data);
+            return "Success";
         }
         else
         {
             console.log("Already exist");
+            return "Already exist";
         }
         
     }
@@ -68,8 +78,20 @@ function check_location(id_loc, href)
 }
 
 data = new Data_Base();
-data.set_user("Borikmm", "18 old");
-data.get_user("Borikmm");
-data.set_user("Borikmm", "20 old");
-data.get_user("Borikmm2");
-data.get_all_users();
+
+function check_enter_data()
+{
+    //console.log(document.getElementById("login").value);
+    //console.log(document.getElementById("password").value);
+    result = data.set_user(document.getElementById("login").value, document.getElementById("password").value);
+    alert(result);
+}
+
+
+
+// data.get_user("Borikmm");
+// data.set_user("Borikmm", "20 old");
+// data.get_user("Borikmm2");
+
+
+//data.get_all_users();
