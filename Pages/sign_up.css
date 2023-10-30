@@ -12,51 +12,10 @@
     margin-top: 5%;
 }
 
-.logo
+.form
 {
-    width: 100px;
-    height: 100px;
-}
-
-#logo
-{
-    border: 5px solid black;
-    border-radius: 30%;
-    text-align: center;
-    padding-top: 30px;
-    width: 600px;
-    height: 150px;
-    font-size: 20px;
-    color: rgba(234, 255, 0, 0.663);
-    background-color: rgba(0, 0, 0, 0.642);
-}
-
-.sign_in,
-.sign_up
-{
-    color: rgb(0, 0, 0);
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 50px;
-    border: 2px solid rgb(240, 115, 115);
-    border-radius: 30%;
-    background-color: aqua;
-    transition: all 250ms ease-in-out;
-}
-
-.sign_in:hover,
-.sign_up:hover
-{
-    color: rgb(255, 255, 255);
-    border: 2px solid rgb(0, 255, 17);
-    background-color: rgb(7, 132, 235);
-}
-
-.text
-{
-    color: blue;
-    font-size: 22px;
+    padding: 8px;
+    margin: 10px;
 }
 
 

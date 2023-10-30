@@ -54,11 +54,11 @@ function check_user()
 {
     if (document.getElementById("name").innerHTML == "name")
     {
-        document.getElementById("link1").href = "hollow_profile.html";
+        document.getElementById("link1").href = "Pages/hollow_profile.html";
     }
     else
     {
-        document.getElementById("link1").href = "profile.html";
+        document.getElementById("link1").href = "Pages/profile.html";
     }
     
 }
@@ -79,11 +79,19 @@ function check_location(id_loc, href)
 
 data = new Data_Base();
 
-function check_enter_data()
+function sign_in()
 {
     //console.log(document.getElementById("login").value);
     //console.log(document.getElementById("password").value);
     result = data.set_user(document.getElementById("login").value, document.getElementById("password").value);
+    alert(result);
+}
+
+function sign_up()
+{
+    //console.log(document.getElementById("login").value);
+    //console.log(document.getElementById("password").value);
+    result = data.set_user(document.getElementById("login").value, document.getElementById("password").value, document.getElementById("telephone").value);
     alert(result);
 }
 

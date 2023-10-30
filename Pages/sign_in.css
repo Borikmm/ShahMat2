@@ -18,6 +18,12 @@
     justify-content: flex-end;
 }
 
+.form
+{
+    padding: 8px;
+    margin: 10px;
+}
+
 body
 {
     background: url("../Design/background_map.png");
