@@ -23,14 +23,22 @@
         </div>
         <div class="content">
 
-            <div class="panel history">
+            <div class="panel task">
                 <div class="Name">Task Panel</div>
-                <center><a href="../../Pages/map.html"><button id="change_location">Main menu</button></a></center>
+                <center><a href="../../index.html"><button id="change_location">Main menu</button></a></center>
                 <center><form style="margin-top: 15px;">
-                    <label>Opacity: </label>
-                    <input type="text" id="opacity_" value="1"><br>
-                    <label>Color: </label>
-                    <input type="color" id="color_">
+                    <hr>
+                    <label style="font-size: 20px;">Spore settings:</label>
+                    <hr>
+                    <div class="form_">
+                        <label>Opacity: </label>
+                        <input type="range" id="opacity_" min="0" max="100" value="90">
+                    </div>
+                    <div class="form_">
+                        <label>Background-Color: </label>
+                        <input type="color" id="color_">
+                    </div>
+                    <hr>
                 </form></center>
             </div>
 
