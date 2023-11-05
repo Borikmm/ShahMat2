@@ -1,5 +1,15 @@
 <?- session_start() ?>
 
+<!-- ctrl shift delete -->
+
+<!-- 
+What do:
+1. design in profile and hollow profile                            (easy      dificult)
+2. link on git hub in title on index                               (very easy dificult)
+3. online: battle between players and system award                 (hard      dificult)
+4. inventory: mechanics sell and move chachmate skins, setup skins (hard      dificult)
+5. donate: free and case                                           (normal    dificult)
+ -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +17,7 @@
     <link rel = 'stylesheet' href="Pages/Map.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="Online/Profiles.js"></script>
+    <script src="Online/Profiles.js" type="text/javascript" charset="utf-8"></script>
     <title>Document</title>
 </head>
 <body>
@@ -25,7 +35,7 @@
     </div>
 
     <div class="acount">
-        <a href="Pages/profile.html" onclick="check_user()" id="link1"><div><img class="logo" src="Design/profile.png"></div></a>
+        <a onclick="check_user()" id="link1"><div><img class="logo" src="Design/profile.png"></div></a>
         <?php 
             if ($_SESSION['user']) 
             {
@@ -40,7 +50,7 @@
 
     <div class="map">
         <div class="point" id="n1">
-            <a href="locations/desert/index.html" id="loc_desert" style="color: rgb(246, 255, 0);" onclick="check_location('loc_desert', 'locations/desert/index.html')">1</a>
+            <a id="loc_desert" style="color: rgb(246, 255, 0);" onclick="check_location('loc_desert', 'locations/desert/index.html')">1</a>
             <img src="Design/glass.jpeg" class="img_loc" >
         </div>
         <div class="point" id="n2">

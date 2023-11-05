@@ -19,22 +19,26 @@
     height: 100px;
 }
 
-#logo
+
+.block_top
 {
-    border: 5px solid black;
-    border-radius: 30%;
-    text-align: center;
-    padding-top: 30px;
-    width: 600px;
-    height: 150px;
-    font-size: 20px;
-    color: rgba(234, 255, 0, 0.663);
-    background-color: rgba(0, 0, 0, 0.642);
+    display: block;
 }
 
-.text
+#log_out
 {
-    color: blue;
+    position: fixed;
+    top: 10%;
+    left: 55%;
+    color: rgb(255, 0, 0);
+    font-size: 22px;
+}
+
+
+
+#text_name
+{
+    color: rgb(255, 0, 0);
     font-size: 22px;
 }
 

@@ -627,8 +627,6 @@ function check_have_chakemate(name) {
         opacity_ = 0.99;
     }
 
-    console.log(opacity_);
-
     MAIN_INFO.COLOR_PAINT = `rgba(${rgb_.r}, ${rgb_.g}, ${rgb_.b}, ${opacity_})`;
 
     if (game_end == false) {
