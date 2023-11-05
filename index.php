@@ -1,3 +1,6 @@
+<?- session_start() ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,16 @@
 
     <div class="acount">
         <a href="Pages/profile.html" onclick="check_user()" id="link1"><div><img class="logo" src="Design/profile.png"></div></a>
-        <div id="name">Borikmm</div>
+        <?php 
+            if ($_SESSION['user']) 
+            {
+                echo '<div id="name"> ' . $_SESSION['user'] . '</div>';
+            }
+            else
+            {
+                echo '<div id="name"> ' . "undefined" . '</div>';
+            }
+        ?>
     </div>
 
     <div class="map">

@@ -24,6 +24,16 @@
     margin: 10px;
 }
 
+.message
+{
+    border: 2px solid orange;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+}
+
 body
 {
     background: url("../Design/background_map.png");
