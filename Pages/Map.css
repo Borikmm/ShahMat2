@@ -176,3 +176,146 @@ body
   
   /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
   .dropdown:hover .dropbtn {background-color: rgb(0, 0, 0); transition: 1s;}
+
+
+
+.modal
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: all .2s ease-out;
+}
+
+
+.modal.open
+{
+    visibility: visible;
+    z-index: 100;
+    opacity: 1;
+}
+
+.modal .overlay
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.modal .modal-window {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    width: 550px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4);
+    background-color: aliceblue;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid black;
+}
+
+.modal .modal-window .block
+{
+    width: 50%;
+    height: 10%;
+
+    background-color: aliceblue;
+}
+
+.btn_change1, .btn_change
+{
+    width: 100%;
+    height: 100%;
+    background-color: #b8afaf;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.modal .modal-window .btn_change.active
+{
+    background-color: #7f7878;
+}
+
+
+
+.modal .btn-close
+{
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    border: none;
+    opacity: 0.7;
+    background: none;
+}
+
+.modal .btn-close:hover
+{
+    opacity: 1;
+}
+
+
+.levels
+{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    text-align: justify;
+}
+
+.levels.sho
+{
+    visibility: visible;
+    z-index: 100;
+    opacity: 1;
+}
+
+
+
+.need
+{
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+
+
+.link
+{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    border: 3px solid black;
+    
+}
+
+.spore
+{
+    text-align: center;
+    width: 25%;
+    border: 3px solid black;
+}

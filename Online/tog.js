@@ -1,0 +1,1 @@
+<script src="https://cdn.jsdelivr.net/npm/easy-toggler@2.2.7"></script>
